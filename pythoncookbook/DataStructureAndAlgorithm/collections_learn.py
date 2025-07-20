@@ -30,9 +30,9 @@ print(f"extendleft(['a', 'b']) 后: {d}") # 注意 extendleft 的顺序
 print("\n--- 5. 旋转 deque ---")
 print(f"原始 deque: {d}")
 d.rotate(2) #向右旋转2位
-print(f"rotate(2) 后: {d}")
+print(f"rotate(2) 后: {d}")  # d.rotate(2) 向右移动2位
 d.rotate(-3) #向左旋转3位
-print(f"rotate(-3) 后: {d}")
+print(f"rotate(-3) 后: {d}")  # d.rotate(3) 向左移动3位
 
 # 6. 固定长度的 deque (maxlen)
 print("\n--- 6. 使用 maxlen ---")
@@ -46,3 +46,20 @@ d_fixed.append(4) # 添加新元素，左边的元素会自动移除
 print(f"append(4) 后: {d_fixed}")
 d_fixed.appendleft(0) # 从左边添加新元素，右边的元素会自动移除
 print(f"appendleft(0) 后: {d_fixed}")
+
+# 7. 使用 deque 实现历史记录功能
+print("\n--- 7. 使用 deque 实现历史记录功能 ---")
+def search(lines, pattern, history=5):
+    previous_lines = deque(maxlen=history)
+    for line in lines:
+        if pattern in line:
+            yield line, previous_lines
+        previous_lines.append(line)
+
+# 示例: 在一个文件中查找包含 'python' 的行，并打印其前5行的历史记录
+example_file_content = [f'Line {i}' for i in range(10)] + ['Line 10 contains python'] + [f'Line {i}' for i in range(11, 20)]
+
+print("在一个虚拟文件中查找 'python':")
+for line, prev_lines in search(example_file_content, 'python', 5):
+    print(f"找到匹配: {line}")
+    print(f"历史记录: {list(prev_lines)}")
