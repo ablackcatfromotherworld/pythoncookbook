@@ -57,7 +57,13 @@ def search(lines, pattern, history=5):
         previous_lines.append(line)
 
 # 示例: 在一个文件中查找包含 'python' 的行，并打印其前5行的历史记录
-example_file_content = [f'Line {i}' for i in range(10)] + ['Line 10 contains python'] + [f'Line {i}' for i in range(11, 20)]
+# example_file_content = [f'Line {i}' for i in range(10)] + ['Line 10 contains python'] + [f'Line {i}' for i in range(11, 20)]
+example_file_content = []
+for i in range(10):
+    example_file_content.append(f"Line {i}")
+example_file_content.append("Line 10 contains python")
+for i in range(11, 20):
+    example_file_content.append(f"Line {i}")
 
 print("在一个虚拟文件中查找 'python':")
 for line, prev_lines in search(example_file_content, 'python', 5):
