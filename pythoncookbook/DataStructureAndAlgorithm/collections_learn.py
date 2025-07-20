@@ -1,0 +1,48 @@
+from collections import deque
+
+# 1. 创建一个双端队列 (deque)
+print("--- 1. 创建 deque ---")
+d = deque(['c', 'd', 'e'])
+print(f"初始 deque: {d}")
+
+# 2. 从两端添加元素
+print("\n--- 2. 添加元素 ---")
+d.append('f')
+print(f"append('f') 后: {d}")
+d.appendleft('b')
+print(f"appendleft('b') 后: {d}")
+
+# 3. 从两端弹出元素
+print("\n--- 3. 弹出元素 ---")
+print(f"pop() -> {d.pop()}")
+print(f"pop() 后: {d}")
+print(f"popleft() -> {d.popleft()}")
+print(f"popleft() 后: {d}")
+
+# 4. 扩展 deque
+print("\n--- 4. 扩展 deque ---")
+d.extend(['f', 'g'])
+print(f"extend(['f', 'g']) 后: {d}")
+d.extendleft(['a', 'b'])
+print(f"extendleft(['a', 'b']) 后: {d}") # 注意 extendleft 的顺序
+
+# 5. 旋转 deque
+print("\n--- 5. 旋转 deque ---")
+print(f"原始 deque: {d}")
+d.rotate(2) #向右旋转2位
+print(f"rotate(2) 后: {d}")
+d.rotate(-3) #向左旋转3位
+print(f"rotate(-3) 后: {d}")
+
+# 6. 固定长度的 deque (maxlen)
+print("\n--- 6. 使用 maxlen ---")
+d_fixed = deque(maxlen=3)
+print(f"创建 maxlen=3 的 deque: {d_fixed}")
+d_fixed.append(1)
+d_fixed.append(2)
+d_fixed.append(3)
+print(f"添加 1, 2, 3 后: {d_fixed}")
+d_fixed.append(4) # 添加新元素，左边的元素会自动移除
+print(f"append(4) 后: {d_fixed}")
+d_fixed.appendleft(0) # 从左边添加新元素，右边的元素会自动移除
+print(f"appendleft(0) 后: {d_fixed}")
